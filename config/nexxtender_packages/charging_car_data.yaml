@@ -148,9 +148,31 @@ text_sensor:
           id(g_${charging_car_id_prefix}_l1) = getShort(x, 4);
           id(g_${charging_car_id_prefix}_l2) = getShort(x, 6);
           id(g_${charging_car_id_prefix}_l3) = getShort(x, 8);
-          id(g_${charging_car_id_prefix}_p1) = getShort(x, 10);
-          id(g_${charging_car_id_prefix}_p2) = getShort(x, 12);
-          id(g_${charging_car_id_prefix}_p3) = getShort(x, 14);
+
+          int16_t p1 = getShort(x, 10);
+          if (p1 < 0)
+          {
+            logd_s("${device_name}_charging_car_data", "Ignoring Negative P1");
+            p1 = 0;
+          }
+          id(g_${charging_car_id_prefix}_p1) = p1;
+
+          int16_t p2 = getShort(x, 12);
+          if (p1 < 0)
+          {
+            logd_s("${device_name}_charging_car_data", "Ignoring Negative P2");
+            p2 = 0;
+          }
+          id(g_${charging_car_id_prefix}_p2) = p2;
+
+          int16_t p3 = getShort(x, 14);
+          if (p3 < 0)
+          {
+            logd_s("${device_name}_charging_car_data", "Ignoring Negative P3");
+            p3 = 0;
+          }
+          id(g_${charging_car_id_prefix}_p3) = p3;
+          
           //id(g_${charging_car_id_prefix}_consumed) = getShort(x, 10);
 
           // Interval is a counter that goes from 0->900 (15 minutes)

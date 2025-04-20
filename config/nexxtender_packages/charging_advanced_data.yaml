@@ -119,7 +119,7 @@ text_sensor:
           id(g_${charging_advanced_id_prefix}_i_available) = getShort(x, 4);
           id(g_${charging_advanced_id_prefix}_grid_power) = getSignedInt(x, 6);
           int32_t car_power = getSignedInt(x, 10);
-          if (car_power == 262132)
+          if (car_power > 250000)
           {
             logd_s("${device_name}_charging_advanced_data", "Ignoring F4.FF.03.00 - See https://github.com/geertmeersman/nexxtender/issues/63");
             car_power = 0;
